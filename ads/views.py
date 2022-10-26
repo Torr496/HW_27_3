@@ -1,5 +1,5 @@
 import json
-
+from pathlib import Path
 
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
@@ -11,10 +11,11 @@ from ads.models import Category, Ad
 import pandas as pandas
 
 
+
 class AddInfo(View):
     def get(self, request):
-        data_ads = pandas.read_csv('D:/HW_27_2/data/ads.csv', sep=",").to_dict()
-        print(data_ads)
+        BASE_DIR = Path(__file__).resolve().parent.parent
+        data_ads = pandas.read_csv(BASE_DIR/'data/ads.csv', sep=",").to_dict()
 
         i = 0
 
@@ -33,8 +34,8 @@ class AddInfo(View):
 
 class AddInfoCat(View):
     def get(self, request):
-        data_ads = pandas.read_csv('D:/HW_27_2/data/categories.csv', sep=",").to_dict()
-        print(data_ads)
+        BASE_DIR = Path(__file__).resolve().parent.parent
+        data_ads = pandas.read_csv(BASE_DIR/'data/categories.csv', sep=",").to_dict()
 
         i = 0
 
